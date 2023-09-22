@@ -1,6 +1,6 @@
 import React from 'react';
 
-function highscores() {
+const highscores = () => {
     return (
       <div>
         <h1>Trivia App </h1>

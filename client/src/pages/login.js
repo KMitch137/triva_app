@@ -1,6 +1,6 @@
 import React from 'react';
 
-function login() {
+const login = () => {
     return (
       <div>
         <h1>Trivia App </h1>
