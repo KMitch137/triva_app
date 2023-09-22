@@ -37,7 +37,7 @@ function NavTabs({ currentPage, handlePageChange }) {
             onClick={() => handlePageChange('login')}
             className={currentPage === 'login' ? 'nav-link active' : 'nav-link'}
         >
-          Sign Up!
+          Login!
         </a>
       </li>
       
