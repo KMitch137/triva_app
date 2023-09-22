@@ -1,4 +1,3 @@
-const User = require('./User');
 const { Schema, model } = require('mongoose');
 
 const highscoreSchema = new Schema({
@@ -9,7 +8,10 @@ const highscoreSchema = new Schema({
     score: {
         type: Number
     },
-    user: [User.Schema]
+    user: {
+        type: Schema.Types.ObjectId, 
+        ref: "User"
+    }
 });
 
 const HighScore = model('HighScore', highscoreSchema);
