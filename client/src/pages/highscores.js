@@ -1,12 +1,12 @@
 import React from 'react';
 
-function highscores() {
+const Highscores = () => {
     return (
       <div>
-        <h1>Trivia App </h1>
+        <h1>Highscores </h1>
         <p>This is the home page.</p>
       </div>
     );
   }
   
-  export default highscores;
+export default Highscores;
