@@ -23,11 +23,11 @@ const renderPage = () => {
 
     if (currentPage === 'signup') {
         return <Signup />;
-      }
+    }
 
-      if (currentPage === 'login') {
+    if (currentPage === 'login') {
         return <Login />;
-      }
+    }
     
   };
 
