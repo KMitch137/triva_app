@@ -8,9 +8,9 @@ const highscoreSchema = new Schema({
     score: {
         type: Number
     },
-    user: {
-        type: Schema.Types.ObjectId, 
-        ref: "User"
+    userName: {
+      type: String,
+      required: true
     }
 });
 
