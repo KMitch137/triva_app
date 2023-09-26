@@ -1,12 +1,13 @@
 import React from 'react';
+import Login from './login';
 
-const Home = () => {
-    return (
-      <div>
-        <h1>Trivia App </h1>
-        <p>This is the home page.</p>
-      </div>
-    );
-  }
-  
-export default Home;
+function HomePage() {
+  return (
+    <div>
+      <h1>Welcome to the Triva App!!!</h1>
+      <Login />
+    </div>
+  );
+}
+
+export default HomePage;
