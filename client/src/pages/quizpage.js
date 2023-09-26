@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 const Quiz = () => {
+    useEffect(() => {
+
+    }, []);
     return (
       <div>
         <h1>Quiz Page! </h1>
