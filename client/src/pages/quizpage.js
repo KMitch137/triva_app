@@ -15,7 +15,7 @@ const Quiz = () => {
 export default Quiz;
 
 
-// here is what we need for the api call
+here is what we need for the api call
 
 `https://opentdb.com/api.php?amount=10&${category}&difficulty=easy&type=multiple`
 
