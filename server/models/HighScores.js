@@ -9,6 +9,7 @@ const highscoreSchema = new Schema({
         type: Number
     },
     userName: {
+        //change to reference User model
       type: String,
       required: true
     }

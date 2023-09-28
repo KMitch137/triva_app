@@ -12,7 +12,6 @@ const resolvers = {
             return scores;
         },
         //find single users highsscores for all categories
-        //ask about parameters here
         user: async (parent, args, context) => {
             if (context.user) {
                 //want to find all highscores attached to a username
@@ -64,6 +63,7 @@ const resolvers = {
         addHighScore: async (parent, args, context) => {
             if (context.user) {
                 const highScore = await HighScore.create(args)
+                //probably can remove const from logic
                 const user = await User.findOneAndUpdate(
                     { userName: args.userName },
                     { $push: { scores: highScore._id } },

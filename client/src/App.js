@@ -44,6 +44,7 @@ import Login from '../src/pages/login';
 
 function App() {
   return (
+
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -53,6 +54,7 @@ function App() {
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>
+    
   );
 }
 
