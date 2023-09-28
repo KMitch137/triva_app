@@ -47,3 +47,10 @@ h2 {
   margin-bottom: 20px;
   text-align: center;
 }
+
+#answer {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+}

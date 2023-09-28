@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import '../../src/index.css';
 
 // may need to use regex to replace apostophes and double quotes
 
@@ -36,26 +37,46 @@ const Quiz = () => {
   //for logging stateful variables
   useEffect(() => {
     console.log(dataState)
-    for (let i=0; i<dataState.length; i++){
-      console.log(dataState[i].options)}
-  },[dataState]);
+    for (let i = 0; i < dataState.length; i++) {
+      console.log(dataState[i].options)
+    }
+  }, [dataState]);
 
-  // question format loop
+
+  // This code will render the answers in a random order mixing up the correct answer with incorrect answers:
   const renderQuestions = (questionSet) => {
-    return questionSet.map((item) => (
-      <div>
-        <h1>{item.question}</h1>
-        {item.options.map((choice, index) => (
-          <p>{index+1}. {choice}</p>
-        ))}
-      </div>
-    ))
-  }
+    return questionSet.map((item) => {
+      // Shuffle the answer options
+      const shuffledOptions = [...item.options];
+      for (let i = shuffledOptions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+      }
+
+      return (
+        <div key={item.question}>
+          <h3>{item.question}</h3>
+          {shuffledOptions.map((choice, index) => (
+            <div key={index}>
+              <input
+                type="radio"
+                id={`answer-${item.question}-${index}`}
+                name={`answer-${item.question}`}
+                value={`${index + 1}.${choice}`}
+              />
+              <label htmlFor={`answer-${item.question}-${index}`}>{choice}</label>
+            </div>
+          ))}
+        </div>
+      );
+    });
+  };
+
   console.log(renderQuestions)
 
-  return(
+  return (
     <>
-    {renderQuestions(dataState)}
+      {renderQuestions(dataState)}
     </>
   )
 }
