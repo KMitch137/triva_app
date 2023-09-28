@@ -3,6 +3,7 @@ import Login from './login';
 import Auth from '../utils/auth';
 import '../../src/index.css';
 import myImage from '../../src/Trivia.png';
+import Quiz from './quizpage';
 
 
 function HomePage() {
@@ -11,7 +12,7 @@ function HomePage() {
     <div>
       <h1>Welcome to the Triva App!!!</h1>
       <img src={myImage} alt="Triva Logo" />
-      {!loggedIn ? <Login /> : null}
+      {!loggedIn ? <Login  /> : <Quiz/>}
     </div>
   );
 }
