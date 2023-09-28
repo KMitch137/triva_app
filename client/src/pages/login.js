@@ -21,7 +21,7 @@ function Login() {
 
   return (
     <div>
-      <h2>Login To Get Started</h2>
+      <h2>Login Or Sign Up To Get Started</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
