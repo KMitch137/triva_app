@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const Quiz = () => {
   const [dataState, setDataState] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('9');
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
@@ -98,5 +98,3 @@ const Quiz = () => {
 };
 
 export default Quiz;
-
-
