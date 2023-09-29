@@ -64,7 +64,7 @@ function Login(props) {
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null}
-         {loginSuccess && ( // Display Chakra UI alert upon successful login
+         {loginSuccess && ( 
           <Alert status="success" my-2>
             <AlertIcon />
             Login successful!
