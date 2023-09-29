@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 const Quiz = () => {
   const [dataState, setDataState] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(''); // Default no category
+  const [selectedCategory, setSelectedCategory] = useState('');
 
-  useEffect(() => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
     if (selectedCategory) {
       // Fetch quiz data based on the selected category
       const requestUrl = `https://opentdb.com/api.php?amount=10&category=${selectedCategory}&difficulty=easy&type=multiple`;
@@ -27,7 +28,7 @@ const Quiz = () => {
             trimmedQuestion = trimmedQuestion.replace(/&quot;/g, '"');
             trimmedQuestion = trimmedQuestion.replace(/&#039;/g, "'");
             return {
-              question: item.question,
+              question: trimmedQuestion,
               correctAnswer: trimmedCorrect,
               options: options,
             };
@@ -35,14 +36,14 @@ const Quiz = () => {
           setDataState([...trimData]);
         });
     }
-  }, [selectedCategory]);
+  }
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
   };
 
-  const renderQuestions = (questionSet) => {
-    return questionSet.map((item, index) => {
+  const renderQuestions = () => {
+    return dataState.map((item, index) => {
       const shuffledOptions = [...item.options];
       for (let i = shuffledOptions.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -69,7 +70,7 @@ const Quiz = () => {
   };
 
   return (
-    <div>
+    <form onSubmit={(e) => {handleFormSubmit(e)}}>
       <label htmlFor="category-select">Select a Category:</label>
       <select
         id="category-select"
@@ -87,9 +88,12 @@ const Quiz = () => {
           <option value="27">Animals</option>
           <option value="28">Vehicles</option>
       </select>
-
-      {dataState.length > 0 && renderQuestions(dataState)}
-    </div>
+      {/* add submit button - move renderQuentions into submit button
+      submit button needs conditional logic to createHighscore if dataState && userChoices exist
+      maybe button can link to user highscore page on submit */}
+      <button type='submit'>Submit</button>
+      {dataState.length > 0 && renderQuestions()}
+    </form>
   );
 };
 
