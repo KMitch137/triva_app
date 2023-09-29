@@ -3,13 +3,19 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
+import { Button, Spinner } from '@chakra-ui/react';
+import '../../src/index.css';
+
+
 
 function Signup(props) {
   const [formState, setFormState] = useState({firstName:"", lastName:"", userName:"", email:"", password:""});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [addUser, {error}] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
     try {
       const mutationResponse = await addUser({
         variables: {
@@ -26,12 +32,10 @@ function Signup(props) {
 
     } catch(error){
       console.log(error);
+    } finally {
+      setIsSubmitting(false);
 
     }
-    
-  
-  
-    
   };
 
   const handleChange = (event) => {
@@ -103,8 +107,14 @@ function Signup(props) {
             value={formState.userName}
           />
         </div>
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
+        <div  className="flex-row flex-end">
+          <Button
+            type="submit"
+            isLoading={isSubmitting} 
+            loadingText="Submitting..." 
+          >
+            Submit
+          </Button>
         </div>
       </form>
     </div>
