@@ -15,14 +15,22 @@ const Quiz = () => {
         .then((response) => response.json())
         .then((data) => {
           const trimData = data.results.map((item) => {
-            const options = [...item.incorrect_answers];
-            options.push(item.correct_answer);
+            let trimmedCorrect = item.correct_answer;
+            trimmedCorrect = trimmedCorrect.replace(/&quot;/g, '"');
+            trimmedCorrect = trimmedCorrect.replace(/&#039;/g, "'");
+            let trimmedIncorrect = item.incorrect_answers.map((wrongTrim) => {
+                wrongTrim = wrongTrim.replace(/&quot;/g, '"');
+                wrongTrim = wrongTrim.replace(/&#039;/g, "'");
+                return wrongTrim;
+            });
+            const options = trimmedIncorrect;
+            options.push(trimmedCorrect);
             let trimmedQuestion = item.question;
             trimmedQuestion = trimmedQuestion.replace(/&quot;/g, '"');
             trimmedQuestion = trimmedQuestion.replace(/&#039;/g, "'");
             return {
-              question: trimmedQuestion,
-              correctAnswer: item.correct_answer,
+              question: item.question,
+              correctAnswer: trimmedCorrect,
               options: options,
             };
           });

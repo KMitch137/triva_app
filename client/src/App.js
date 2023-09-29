@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'; 
-
 import Home from '../src/pages/homepage';
 import Quiz from '../src/pages/quizpage';
 import Highscores from '../src/pages/highscores';

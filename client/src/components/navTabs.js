@@ -32,6 +32,8 @@ function NavTabs({ currentPage }) {
         </Link>
       </li>
     </ul>
+
+
   );
 }
 
