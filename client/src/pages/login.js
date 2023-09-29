@@ -4,10 +4,12 @@ import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { Alert, AlertIcon } from "@chakra-ui/react";
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -17,6 +19,7 @@ function Login(props) {
       });
       const token = mutationResponse.data.login.token;
       Auth.login(token);
+      setLoginSuccess(true);
     } catch (e) {
       console.log(e);
     }
@@ -61,6 +64,12 @@ function Login(props) {
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null}
+         {loginSuccess && ( // Display Chakra UI alert upon successful login
+          <Alert status="success" my-2>
+            <AlertIcon />
+            Login successful!
+          </Alert>
+        )}
         <div className="flex-row flex-end">
           <button type="submit">Submit</button>
         </div>
