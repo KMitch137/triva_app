@@ -8,25 +8,29 @@ const Quiz = () => {
     e.preventDefault()
     if (selectedCategory) {
       // Fetch quiz data based on the selected category
-      const requestUrl = `https://opentdb.com/api.php?amount=10&category=${selectedCategory}&difficulty=easy&type=multiple`;
+      const requestUrl = `https://opentdb.com/api.php?amount=10&category=${selectedCategory}&difficulty=easy&type=multiple&&encode=base64`;
 
       fetch(requestUrl)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data)
+          // will look into this later for parsing the response correctly - will need to attach encoding method to URL string "&encode=url3986"
+          // const decodedRes = decodeURIComponent(data.results[0].question);
+          // const jsonRes = JSON.parse(decodedRes)
+          // console.log(jsonRes)
           const trimData = data.results.map((item) => {
-            let trimmedCorrect = item.correct_answer;
-            trimmedCorrect = trimmedCorrect.replace(/&quot;/g, '"');
-            trimmedCorrect = trimmedCorrect.replace(/&#039;/g, "'");
+            let trimmedCorrect = atob(item.correct_answer);
+
             let trimmedIncorrect = item.incorrect_answers.map((wrongTrim) => {
-                wrongTrim = wrongTrim.replace(/&quot;/g, '"');
-                wrongTrim = wrongTrim.replace(/&#039;/g, "'");
+                wrongTrim = atob(wrongTrim);
                 return wrongTrim;
             });
+
             const options = trimmedIncorrect;
             options.push(trimmedCorrect);
-            let trimmedQuestion = item.question;
-            trimmedQuestion = trimmedQuestion.replace(/&quot;/g, '"');
-            trimmedQuestion = trimmedQuestion.replace(/&#039;/g, "'");
+
+            let trimmedQuestion = atob(item.question);
+            
             return {
               question: trimmedQuestion,
               correctAnswer: trimmedCorrect,
@@ -98,3 +102,6 @@ const Quiz = () => {
 };
 
 export default Quiz;
+
+// need a logout function
+// possibly need to add support for more character encodings - "utf-8" etc --- look into Webpack Encoding Plugin npm install webpack-encoding-plugin
