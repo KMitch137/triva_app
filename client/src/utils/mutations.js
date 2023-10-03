@@ -23,9 +23,15 @@ export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
-      user {
-        _id
-      }
     }
   }
 `;
+
+export const SAVE_SCORE = gql`
+mutation Mutation($category: String!, $score: Int!, $userName: String!) {
+  addHighScore(category: $category, score: $score, userName: $userName) {
+    category
+    score
+    userName
+  }
+}`

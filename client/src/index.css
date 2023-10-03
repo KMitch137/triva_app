@@ -5,9 +5,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   min-height: 100vh;
   margin: 0;
+  margin-top: 50px;
+  overflow-y:hidden ;
 }
 
 
@@ -55,3 +57,74 @@ h2 {
   display: flex;
 }
 
+.clform {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.tctr {
+  text-align: center;
+
+}
+
+.question-section {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.answer-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.score-section {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 2;
+}
+
+
+.hs, .hsp {
+  display: flex;
+  justify-content: space-around;
+  margin: 2px;
+  width: 400px;
+}
+
+.btn {
+  background-color: green;
+  color: white;
+
+  width: 100px;
+}
+
+@media screen and (max-width:933px) {
+  .image { height: 500px; width: 500px;
+    text-align: center;
+
+  }
+
+  .image img {
+    object-fit: contain;
+  }
+
+  
+}
+
+@media screen and (max-width:500px) {
+  .image { height: 200px; width: 200px;
+    text-align: center;
+
+  }
+
+  .image img {
+    object-fit: cover;
+  }
+
+  
+}

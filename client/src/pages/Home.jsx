@@ -3,18 +3,20 @@ import Login from './login';
 import Auth from '../utils/auth';
 import '../../src/index.css';
 import myImage from '../../src/Trivia.png';
-import Quiz from './quizpage';
+import Categories from './Category';
 
 
-function HomePage() {
+function Home() {
   const loggedIn = Auth.loggedIn();
   return (
     <div>
       <h1>Welcome to the Triva App!!!</h1>
+    <div className="image">
       <img src={myImage} alt="Triva Logo" />
-      {!loggedIn ? <Login  /> : <Quiz/>}
+    </div>
+      {!loggedIn ? <Login  /> : <div className="clform" ><Categories/></div>}
     </div>
   );
 }
 
-export default HomePage;
+export default Home;
